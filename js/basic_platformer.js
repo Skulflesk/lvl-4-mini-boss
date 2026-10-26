@@ -29,7 +29,7 @@ platform1.width = 300;
 platform1.x = 500;
 platform1.color = "#66ff33";
 platform1.height = 20;
-platform1.y = 800;
+platform1.y = 900;
 platform1.color = "#66ff33";
 
 goal = new GameObject({width:24, height:50, x:canvas.width-50, y:100, color:"#00ffff"});
@@ -60,28 +60,28 @@ function animate()
     player.x += Math.round(player.vx);
     player.y += Math.round(player.vy);
 
-    while(platform0.hitTestPoint(player.bottom()) && player.vy >=0)
+    if(platform0.hitTestPoint(player.bottom()) && player.vy >= 0)
     {
-        player.y--;
+        player.y = platform0.y - platform0.height/2 - player.height/2;
         player.vy = 0;
         player.canJump = true;
     }
 
-    while(platform0.hitTestPoint(player.left()) && player.vx <=0)
+    if(platform0.hitTestPoint(player.left()) && player.vx <= 0)
     {
-        player.x++;
+        player.x = platform0.x + platform0.width/2 + player.width/2;
         player.vx = 0;
     }
 
-    while(platform0.hitTestPoint(player.right()) && player.vx >=0)
+    if(platform0.hitTestPoint(player.right()) && player.vx >= 0)
     {
-        player.x--;
+        player.x = platform0.x - platform0.width/2 - player.width/2;
         player.vx = 0;
     }
 
-    while(platform0.hitTestPoint(player.top()) && player.vy <=0)
+    if(platform0.hitTestPoint(player.top()) && player.vy <= 0)
     {
-        player.y++;
+        player.y = platform0.y + platform0.height/2 + player.height/2;
         player.vy = 0;
     }
 
@@ -92,6 +92,49 @@ function animate()
         player.canJump = true;
     }
 
+    if(platform1.hitTestPoint(player.left()) && player.vx <= 0)
+    {
+        player.x = platform1.x + platform1.width/2 + player.width/2;
+        player.vx = 0;
+    }
+
+    if(platform1.hitTestPoint(player.right()) && player.vx >= 0)
+    {
+        player.x = platform1.x - platform1.width/2 - player.width/2;
+        player.vx = 0;
+    }
+
+    if(platform1.hitTestPoint(player.top()) && player.vy <= 0)
+    {
+        player.y = platform1.y + platform1.height/2 + player.height/2;
+        player.vy = 0;
+    }
+
+    if(platform2.hitTestPoint(player.bottom()) && player.vy >= 0)
+    {
+        player.y = platform2.y - platform2.height/2 - player.height/2;
+        player.vy = 0;
+        player.canJump = true;
+    }
+
+    if(platform2.hitTestPoint(player.left()) && player.vx <= 0)
+    {
+        player.x = platform2.x + platform2.width/2 + player.width/2;
+        player.vx = 0;
+    }
+
+    if(platform2.hitTestPoint(player.right()) && player.vx >= 0)
+    {
+        player.x = platform2.x - platform2.width/2 - player.width/2;
+        player.vx = 0;
+    }
+
+    if(platform2.hitTestPoint(player.top()) && player.vy <= 0)
+    {
+        player.y = platform2.y + platform2.height/2 + player.height/2;
+        player.vy = 0;
+    }
+
     if(player.hitTestObject(goal))
     {
         goal.y = 10000;
@@ -99,18 +142,7 @@ function animate()
         context.fillText("You Win!!!", canvas.width/2, canvas.height/2);
     }
 
-    platform1.y -= 2;
-
-    while(platform1.hitTestPoint(player.left()) && player.vx >= 0)
-    {
-        platform1.x += player.vx;
-        player.x++;
-    }
-
-    if(platform1.hitTestObject(player))
-    {
-        platform1.vx = -5;
-    }
+    platform1.y -= 5;
 
     platform0.drawRect();
     platform2.drawRect();
