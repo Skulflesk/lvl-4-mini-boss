@@ -18,6 +18,14 @@ var player;
 		platform0.y = canvas.height - platform0.height/2;
 		platform0.color = "#66ff33";
 		
+	platform2 = new GameObject();
+		platform2.width = 200
+		platform2.x = 800;
+		platform2.color = "#66ff33";
+		platform2.y = platform0.y - 800;
+		platform2.color = "#66ff33";
+
+
 	goal = new GameObject({width:24, height:50, x:canvas.width-50, y:100, color:"#00ffff"});
 	
 
@@ -97,6 +105,7 @@ function animate()
 	
 	
 	platform0.drawRect();
+	platform2.drawRect();
 
 	//Show hit points
 	player.drawRect();
