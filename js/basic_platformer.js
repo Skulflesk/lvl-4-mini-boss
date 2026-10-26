@@ -19,10 +19,10 @@ var player;
 		platform0.color = "#66ff33";
 		
 	platform2 = new GameObject();
-		platform2.width = 200
+		platform2.width = 300
 		platform2.x = 800;
 		platform2.color = "#66ff33";
-		platform2.y = platform0.y - 800;
+		platform2.y = platform0.y - 530;
 		platform2.color = "#66ff33";
 
 
